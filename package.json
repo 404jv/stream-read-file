@@ -1,0 +1,13 @@
+{
+  "name": "desafio-01-ignite",
+  "version": "1.0.0",
+  "description": "Nesse desafio você desenvolverá uma API para realizar o CRUD de suas tasks (tarefas).",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
