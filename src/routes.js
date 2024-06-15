@@ -49,4 +49,17 @@ export const routes = [
       return response.writeHead(204).end()
     }
   },
+  {
+    method: 'PATCH',
+    path: buildRoutePath('/tasks/:id'),
+    handler: (request, response) => {
+      const { id } = request.params
+      const taskExist = database.findById('tasks', id)
+      if (taskExist === null) {
+        return response.writeHead(404).end()
+      }
+      const data = database.update('tasks', id, { completed_at: new Date().toISOString() })
+      return response.end(JSON.stringify(data))
+    }
+  },
 ]

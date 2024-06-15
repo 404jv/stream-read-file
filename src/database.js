@@ -63,7 +63,7 @@ export class Database {
         id,
         title: data.title ?? oldTask.title,
         description: data.description ?? oldTask.description,
-        completed_at: oldTask.completed_at,
+        completed_at: data.completed_at ?? oldTask.completed_at,
         created_at: oldTask.created_at,
         updated_at: oldTask.updated_at,
       }
