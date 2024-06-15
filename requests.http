@@ -8,5 +8,14 @@ Content-Type: application/json
 }
 
 ### Listar tasks
-GET http://localhost:3333/tasks?search=descri
+GET http://localhost:3333/tasks
 Content-Type: application/json
+
+### Atualizar task
+PUT http://localhost:3333/tasks/ca152a55-5e6d-4d7c-a2ec-380eb1d8e10a
+Content-Type: application/json
+
+{
+  "title": "ATUALIZADA 1 task",
+  "description": "ATUALIZADA isso é uma descrição task"
+}

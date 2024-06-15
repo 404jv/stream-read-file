@@ -46,4 +46,23 @@ export class Database {
     }
     return data
   }
+
+  update(table, id, data) {
+    const index = this.#database[table].findIndex(row => row.id === id)
+    if (index > -1) {
+      const oldTask = this.#database[table][index]
+      const newTask = {
+        id,
+        title: data.title ?? oldTask.title,
+        description: data.description ?? oldTask.description,
+        completed_at: oldTask.completed_at,
+        created_at: oldTask.created_at,
+        updated_at: oldTask.updated_at,
+      }
+      this.#database[table][index] = newTask
+      this.#persist()
+      return this.#database[table][index]
+    }
+    return null
+  }
 }
