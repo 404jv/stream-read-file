@@ -28,9 +28,25 @@ export const routes = [
     handler: (request, response) => {
       const { id } = request.params
       const { title, description } = request.body
+      const taskExist = database.findById('tasks', id)
+      if (taskExist === null) {
+        return response.writeHead(404).end()
+      }
       const data = database.update('tasks', id, { title, description })
-      console.log(data)
       return response.end(JSON.stringify(data))
+    }
+  },
+  {
+    method: 'DELETE',
+    path: buildRoutePath('/tasks/:id'),
+    handler: (request, response) => {
+      const { id } = request.params
+      const taskExist = database.findById('tasks', id)
+      if (taskExist === null) {
+        return response.writeHead(404).end()
+      }
+      database.delete('tasks', id)
+      return response.writeHead(204).end()
     }
   },
 ]

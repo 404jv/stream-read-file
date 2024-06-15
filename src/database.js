@@ -47,6 +47,14 @@ export class Database {
     return data
   }
 
+  findById(table, id) {
+    const data = this.#database[table].find(row => row.id === id)
+    if (data) {
+      return data
+    }
+    return null
+  }
+
   update(table, id, data) {
     const index = this.#database[table].findIndex(row => row.id === id)
     if (index > -1) {
@@ -64,5 +72,13 @@ export class Database {
       return this.#database[table][index]
     }
     return null
+  }
+
+  delete(table, id) {
+    const index = this.#database[table].findIndex(row => row.id === id)
+    if (index > -1) {
+      this.#database[table].splice(index, 1)
+      this.#persist()
+    }
   }
 }
